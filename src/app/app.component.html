@@ -1,3 +1,11 @@
-<h1>
-  {{title}}
-</h1>
+<div>
+<h1>{{title}}</h1>
+  <div>
+  	<ul>
+  		<li *ngFor="let workout of workouts">
+  			<button>{{workout.name}}</button>
+  		</li>
+  	</ul>
+
+<button (click)='console()'>Clicky</button>
+</div>
