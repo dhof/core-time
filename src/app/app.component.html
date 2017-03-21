@@ -1,11 +1,15 @@
 <div>
 <h1>{{title}}</h1>
+<button [class.selected]="typeStatic === false" (click)='filterStatic()'>Filter Static</button>
+<button [class.selected]="typeDynamic === false" (click)='filterDynamic()'>Filter Dynamic</button>
+<button [class.selected]="locationGround === false" (click)='filterGround()'>Filter Ground</button>
+<button [class.selected]="locationHanging === false" (click)='filterHanging()'>Filter Hanging</button>
+<p></p>
   <div>
-  	<ul>
-  		<li *ngFor="let workout of workouts">
-  			<button>{{workout.name}}</button>
-  		</li>
-  	</ul>
-
-<button (click)='console()'>Clicky</button>
+  	
+  		<div *ngFor="let workout of workouts">
+  			<button *ngIf="workout.typeShow && workout.locationShow" >{{workout.name}}</button>
+  		</div>
+  	<p></p>
+<button (click)='console()'>console</button>
 </div>

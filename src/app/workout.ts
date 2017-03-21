@@ -3,4 +3,6 @@ export class Workout {
 		name: string;
 		type: string;
 		location: string;
+		typeShow: boolean;
+		locationShow: boolean;
 }
