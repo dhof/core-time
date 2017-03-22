@@ -40,6 +40,55 @@ export class AppComponent implements OnInit {
 
 // WORKOUT FILTERS FOR type AND location
 	
+	filterTypes(workoutType: string): void {
+		var i;
+		// console.log(workoutType)
+		for (i = 0; i < this.workouts.length; i++) { 
+			if (this.workouts[i].type === workoutType && this.workouts[i].typeShow === true) {
+				// console.log(this.workouts[i].name + " " + this.workouts[i].type)
+					this.workouts[i].typeShow = false
+					if (workoutType === 'static') {
+							this.typeStatic = false
+					} else {
+							this.typeDynamic = false
+					}
+			}
+			else if (this.workouts[i].type === workoutType && this.workouts[i].typeShow === false) {
+					this.workouts[i].typeShow = true 
+					if (workoutType === 'static') {
+							this.typeStatic = true
+					} else {
+							this.typeDynamic = true
+					}
+			}
+		} 
+	}
+
+
+	filterLocations(workoutLocation: string): void {
+		var i;
+		// console.log(workoutType)
+		for (i = 0; i < this.workouts.length; i++) { 
+			if (this.workouts[i].location === workoutLocation && this.workouts[i].locationShow === true) {
+				// console.log(this.workouts[i].name + " " + this.workouts[i].type)
+					this.workouts[i].locationShow = false
+					if (workoutLocation === 'ground') {
+							this.locationGround = false
+					} else {
+							this.locationHanging = false
+					}
+			}
+			else if (this.workouts[i].location === workoutLocation && this.workouts[i].locationShow === false) {
+					this.workouts[i].locationShow = true 
+					if (workoutLocation === 'ground') {
+							this.locationGround = true
+					} else {
+							this.locationHanging = true
+					}
+			}
+		} 
+	}
+
 	filterStatic(): void {
 		var i;
 		if ( this.typeStatic === true) {
