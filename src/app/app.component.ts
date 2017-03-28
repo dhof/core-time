@@ -143,15 +143,13 @@ export class AppComponent implements OnInit {
 		var min = 0;
 		var max = this.workouts.length;
 		var q;
-		var i = 0;
-		var j = 0;
-		var k = 0;
+		var i;
 
 	  	while (this.selectedWorkouts.length < 5) {
 	  		var workoutExists = false
 	  		q = Math.floor(Math.random() * (max - min)) + min;
 	  		// console.log(q);
-	  		for(i; i < this.selectedWorkouts.length; i++) {
+	  		for (i = 0; i < this.selectedWorkouts.length; i++) {
 	  			if(this.selectedWorkouts[i].id === this.workouts[q].id) {
 	  				workoutExists = true;
 	  			}
@@ -162,23 +160,31 @@ export class AppComponent implements OnInit {
 		}
 
 
-		for(k; k < this.workouts.length; k++) {
-			console.log(this.workouts[k].id + " workout");
-	  			for (j; j < this.selectedWorkouts.length; j++) {
-					console.log(this.selectedWorkouts[j].id + " selected")
-					if(this.workouts[k].id === this.selectedWorkouts[j].id) {
-						
-						this.workouts[k].selected = true;
-					}
+		// highlight selected workouts
+		var j;
+		var k;
+
+		for (k = 0; k < this.selectedWorkouts.length; k++) {
+  			for (j = 0; j < this.workouts.length; j++) {
+				if(this.selectedWorkouts[k].id === this.workouts[j].id) {
+					this.workouts[j].selected = true;
 				}
-	  		}
+			}
+  		}	
 	}
 
 
 	console(): void {
-		console.log(this.selectedWorkouts);
-		console.log(this.workouts.length);
+		var i = 0;
+		var j = 0;
+		var k = 0;
+		for (k; k < 5; k ++) {
+		console.log(k + " k")
+		for (j; j < 10; j ++) {
+			console.log(j + " j")
+		}
 	}
-
+		// console.log(this.selectedWorkouts);
+		// console.log(this.workouts.length);
+	}
 }
-
