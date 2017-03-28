@@ -1,3 +1,47 @@
-.selected {
+.selectedFilter {
 	background-color: red;
 }
+
+.randomizer {
+	margin-left: 16.5%;
+	margin-right: 1%;
+}
+
+
+
+
+/* ~~~~~~~~~ Workouts div ~~~~~~~~~ */
+.workouts {
+	float: left;
+	padding: 25px 0 10px 0;
+	width: 40%;
+}
+
+/*.workouts div {
+	padding-bottom: 3px;
+}*/
+
+.notAdded {
+	background-color: #33F0FF;
+}
+
+.isAdded {
+	background-color: #adb2ba;
+	padding-bottom: 3px;
+}
+
+
+
+/* ~~~~~~~~~ Selected Workouts div ~~~~~~~~~ */
+.selectedWorkouts {
+	float: right;
+	margin-right: 5%;
+	padding: 25px 0 0 0;
+	width: 40%;
+}
+
+.selectedWorkouts div {
+	padding-bottom: 3px;
+}
+
+

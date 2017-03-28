@@ -8,8 +8,9 @@ export class InMemoryDataService implements InMemoryDbService {
 				name: 'Russian Twist',
 				type: 'dynamic',
 				location: 'ground',
-				typetypeShow: true,
-				locationShow: true
+				typeShow: true,
+				locationShow: true,
+				selected: false,
 			},
 			{
 				id: 2,
@@ -17,7 +18,8 @@ export class InMemoryDataService implements InMemoryDbService {
 				type: 'static',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
 				id: 3,
@@ -25,7 +27,8 @@ export class InMemoryDataService implements InMemoryDbService {
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
 				id: 4,
@@ -33,143 +36,161 @@ export class InMemoryDataService implements InMemoryDbService {
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 5,
 				name: 'V Ups',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 6,
 				name: 'Plank Knee to Elbow',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 7,
 				name: 'Big Circle',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 8,
 				name: 'Superman',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 9,
 				name: 'Side Crunch',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 10,
 				name: 'Pulse Up',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 11,
 				name: 'Hollow Man',
 				type: 'static',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
-				name: 'Superman',
+				id: 12,
+				name: 'Toe to Bar',
 				type: 'dynamic',
-				location: 'ground',
+				location: 'hanging',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 13,
 				name: 'Scissor Kick',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 14,
 				name: 'Crunch Ball Raise',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 15,
 				name: 'Ball Bridge',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 16,
 				name: 'Mountain Climber',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 17,
 				name: 'Ball Knee Tuck',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 18,
 				name: 'Knee In',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 19,
 				name: 'Starfish',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 20,
 				name: 'Cherry Picker',
 				type: 'dynamic',
 				location: 'ground',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 			{
-				id: 2,
+				id: 21,
 				name: 'Hanging Knee Raise',
 				type: 'dynamic',
 				location: 'hanging',
 				typeShow: true,
-				locationShow: true
+				locationShow: true,
+				selected: false,
 			},
 
 		]; 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Workout } from './workout';
 import { WorkoutService } from './workout.service';
@@ -14,19 +13,14 @@ import { WorkoutService } from './workout.service';
 export class AppComponent implements OnInit {
 	title = 'Core Time'
 	workouts : Workout[];
-	typeStatic = true;
-	typeDynamic = true;
-	locationGround = true;
-	locationHanging = true;
-	turnRed = 1;
-	
-
+	selectedWorkouts = [];
 
 	constructor (
-		private workoutService: WorkoutService,
-		// private router: Router
-	) { }
+		private workoutService: WorkoutService
+	) {}
 
+
+	// populates workouts array from in memory db data
 	getWorkouts(): void {
 		this.workoutService.getWorkouts().then(workouts => this.workouts = workouts);
 	}
@@ -38,14 +32,17 @@ export class AppComponent implements OnInit {
 
 
 
-// WORKOUT FILTERS FOR type AND location
+// WORKOUT FILTERS BUTTONS
+	typeStatic = true;
+	typeDynamic = true;
+	locationGround = true;
+	locationHanging = true;
+
 	
 	filterTypes(workoutType: string): void {
 		var i;
-		// console.log(workoutType)
 		for (i = 0; i < this.workouts.length; i++) { 
 			if (this.workouts[i].type === workoutType && this.workouts[i].typeShow === true) {
-				// console.log(this.workouts[i].name + " " + this.workouts[i].type)
 					this.workouts[i].typeShow = false
 					if (workoutType === 'static') {
 							this.typeStatic = false
@@ -67,10 +64,8 @@ export class AppComponent implements OnInit {
 
 	filterLocations(workoutLocation: string): void {
 		var i;
-		// console.log(workoutType)
 		for (i = 0; i < this.workouts.length; i++) { 
 			if (this.workouts[i].location === workoutLocation && this.workouts[i].locationShow === true) {
-				// console.log(this.workouts[i].name + " " + this.workouts[i].type)
 					this.workouts[i].locationShow = false
 					if (workoutLocation === 'ground') {
 							this.locationGround = false
@@ -89,94 +84,101 @@ export class AppComponent implements OnInit {
 		} 
 	}
 
-	filterStatic(): void {
-		var i;
-		if ( this.typeStatic === true) {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].type === 'static' && this.workouts[i].typeShow === true) {
-					this.workouts[i].typeShow = false
+
+
+
+// selectedWorkouts functionality
+
+	addWorkout(workout: Workout): void {
+		var i = 0;
+		var j = 0;
+		var workoutExists = false;
+
+		if (this.selectedWorkouts.length < 5) { 
+			for (i; i < this.selectedWorkouts.length; i++) {
+				if (workout.id === this.selectedWorkouts[i].id) {
+					workoutExists = true;
 				}
-				this.typeStatic = false
 			}
-		} else {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].type === 'static' && this.workouts[i].typeShow === false) {
-					this.workouts[i].typeShow = true
+			if (workoutExists === false) {
+				this.selectedWorkouts.push(workout)
+			}
+			for (j; j < this.workouts.length; j++) {
+				if(workout.id === this.workouts[j].id) {
+					this.workouts[j].selected = true;
 				}
 			}
-			this.typeStatic = true	
 		}
 	}
 
 
-	filterDynamic(): void {
-		var i;
-		if ( this.typeDynamic === true) {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].type === 'dynamic' && this.workouts[i].typeShow === true) {
-					this.workouts[i].typeShow = false
+	removeWorkout(workout: Workout): void {
+		var i = 0;
+		var j = 0;
+
+		for (i; i < this.selectedWorkouts.length; i++) {
+			if (workout.id === this.selectedWorkouts[i].id) {
+				this.selectedWorkouts.splice(i, 1)
+
+				for (j; j < this.workouts.length; j++) {
+					if(workout.id === this.workouts[j].id) {
+						this.workouts[j].selected = false
+					}
 				}
-				this.typeDynamic = false
 			}
-		} else {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].type === 'dynamic' && this.workouts[i].typeShow === false) {
-					this.workouts[i].typeShow = true
-				}
-			}
-			this.typeDynamic = true	
 		}
 	}
 
 
-	filterGround(): void {
-		var i;
-		if ( this.locationGround === true) {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].location === 'ground' && this.workouts[i].locationShow === true) {
-					this.workouts[i].locationShow = false
-				}
-				this.locationGround = false
-			}
-		} else {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].location === 'ground' && this.workouts[i].locationShow === false) {
-					this.workouts[i].locationShow = true
-				}
-			}
-			this.locationGround = true	
+	clearSelectedWorkouts(): void {
+		var i = 0;
+		this.selectedWorkouts = [];
+		for (i; i < this.workouts.length; i++) {
+			this.workouts[i].selected = false
 		}
 	}
 
 
-	filterHanging(): void {
-		var i;
-		if ( this.locationHanging === true) {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].location === 'hanging' && this.workouts[i].locationShow === true) {
-					this.workouts[i].locationShow = false
-				}
-				this.locationHanging = false
-			}
-		} else {
-			for (i = 0; i < this.workouts.length; i++) {
-				if (this.workouts[i].location === 'hanging' && this.workouts[i].locationShow === false) {
-					this.workouts[i].locationShow = true
-				}
-			}
-			this.locationHanging = true	
+	randomizeWorkouts(): void {
+		var min = 0;
+		var max = this.workouts.length;
+		var q;
+		var i = 0;
+		var j = 0;
+		var k = 0;
+
+	  	while (this.selectedWorkouts.length < 5) {
+	  		var workoutExists = false
+	  		q = Math.floor(Math.random() * (max - min)) + min;
+	  		// console.log(q);
+	  		for(i; i < this.selectedWorkouts.length; i++) {
+	  			if(this.selectedWorkouts[i].id === this.workouts[q].id) {
+	  				workoutExists = true;
+	  			}
+	  		}
+	  		if (workoutExists === false) {
+  				this.selectedWorkouts.push(this.workouts[q])
+	  		}
 		}
+
+
+		for(k; k < this.workouts.length; k++) {
+			console.log(this.workouts[k].id + " workout");
+	  			for (j; j < this.selectedWorkouts.length; j++) {
+					console.log(this.selectedWorkouts[j].id + " selected")
+					if(this.workouts[k].id === this.selectedWorkouts[j].id) {
+						
+						this.workouts[k].selected = true;
+					}
+				}
+	  		}
 	}
-
-	selectStatic(): void {
-
-	}
-
-
 
 
 	console(): void {
-		console.log(this.workouts);
+		console.log(this.selectedWorkouts);
+		console.log(this.workouts.length);
 	}
+
 }
 

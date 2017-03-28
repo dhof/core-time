@@ -1,15 +1,28 @@
-<div>
-<h1>{{title}}</h1>
-<button [class.selected]="typeStatic === false" (click)='filterTypes("static")'>Filter Static</button>
-<button [class.selected]="typeDynamic === false" (click)='filterTypes("dynamic")'>Filter Dynamic</button>
-<button [class.selected]="locationGround === false" (click)='filterLocations("ground")'>Filter Ground</button>
-<button [class.selected]="locationHanging === false" (click)='filterLocations("hanging")'>Filter Hanging</button>
-<p></p>
-  <div>
-  	
-  		<div *ngFor="let workout of workouts">
-  			<button *ngIf="workout.typeShow && workout.locationShow" >{{workout.name}}</button>
-  		</div>
-  	<p></p>
-<button (click)='console()'>console</button>
+<div class="main">
+	
+	<div>
+		<h1>{{title}}</h1>
+		<button [class.selectedFilter]="typeStatic === false" (click)="filterTypes('static')">Filter Static</button>
+		<button [class.selectedFilter]="typeDynamic === false" (click)="filterTypes('dynamic')">Filter Dynamic</button>
+		<button [class.selectedFilter]="locationGround === false" (click)="filterLocations('ground')">Filter Ground</button>
+		<button [class.selectedFilter]="locationHanging === false" (click)="filterLocations('hanging')">Filter Hanging</button>
+		<button class="randomizer" (click)="randomizeWorkouts()">Randomize</button>
+		<button class="clear" (click)="clearSelectedWorkouts()">Clear Selected Workouts</button>
+	</div>
+
+	  <div class="workouts">
+	  		<div *ngFor="let workout of workouts">
+	  			<button *ngIf="workout.typeShow && workout.locationShow" (click)="addWorkout(workout)" [class.isAdded]="workout.selected === true" [class.notAdded]="workout.selected === false">{{workout.name}}</button>
+	  		</div>
+	  	<p></p>
+	<button (click)='console()'>console</button>
+	</div>
+
+
+	<div class="selectedWorkouts">
+		<div *ngFor="let selectedWorkout of selectedWorkouts">
+			<button (click)="removeWorkout(selectedWorkout)">{{selectedWorkout.name}}</button>
+		</div>
+	</div>
+
 </div>

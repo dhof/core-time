@@ -5,4 +5,5 @@ export class Workout {
 		location: string;
 		typeShow: boolean;
 		locationShow: boolean;
+		selected: boolean;
 }
