@@ -17,12 +17,8 @@
 	width: 40%;
 }
 
-/*.workouts div {
-	padding-bottom: 3px;
-}*/
-
 .notAdded {
-	background-color: #33F0FF;
+	background-color: #b3d9ff;
 }
 
 .isAdded {

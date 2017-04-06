@@ -2,10 +2,10 @@
 	
 	<div>
 		<h1>{{title}}</h1>
-		<button [class.selectedFilter]="typeStatic === false" (click)="filterTypes('static')">Filter Static</button>
-		<button [class.selectedFilter]="typeDynamic === false" (click)="filterTypes('dynamic')">Filter Dynamic</button>
-		<button [class.selectedFilter]="locationGround === false" (click)="filterLocations('ground')">Filter Ground</button>
-		<button [class.selectedFilter]="locationHanging === false" (click)="filterLocations('hanging')">Filter Hanging</button>
+		<button [class.selectedFilter]="typeStatic === false" (click)="filterTypes('static')">Static Off</button>
+		<button [class.selectedFilter]="typeDynamic === false" (click)="filterTypes('dynamic')">Dynamic Off</button>
+		<button [class.selectedFilter]="locationGround === false" (click)="filterLocations('ground')">Ground Off</button>
+		<button [class.selectedFilter]="locationHanging === false" (click)="filterLocations('hanging')">Hanging Off</button>
 		<button class="randomizer" (click)="randomizeWorkouts()">Randomize</button>
 		<button class="clear" (click)="clearSelectedWorkouts()">Clear Selected Workouts</button>
 	</div>

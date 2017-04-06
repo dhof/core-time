@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 	title = 'Core Time'
 	workouts : Workout[];
 	selectedWorkouts = [];
+	shownWorkouts = [];
 
 	constructor (
 		private workoutService: WorkoutService
@@ -139,28 +140,67 @@ export class AppComponent implements OnInit {
 	}
 
 
+	getShownWorkouts(): void {
+		var i;
+		for (i = 0; i < this.workouts.length; i++) {
+			if (this.workouts[i].typeShow === true && this.workouts[i].locationShow === true) {
+				this.shownWorkouts.push(this.workouts[i])
+			}
+		}
+	}
+
+
 	randomizeWorkouts(): void {
+		this.shownWorkouts = [];
+		this.getShownWorkouts();
 		var min = 0;
-		var max = this.workouts.length;
+		var max = this.shownWorkouts.length;
 		var q;
 		var i;
+		var j;
+		var l;
+		var workoutVisibleCount = this.shownWorkouts.length;
+		var workoutAlreadyAddedCount = 0;
+		var alreadyAdded = [];
+		var addCount = 0;
 
-	  	while (this.selectedWorkouts.length < 5) {
-	  		var workoutExists = false
+
+	  	while (this.selectedWorkouts.length < 5 && workoutVisibleCount != 0) {
+	  		var workoutAlreadyAdded = false
 	  		q = Math.floor(Math.random() * (max - min)) + min;
-	  		// console.log(q);
-	  		for (i = 0; i < this.selectedWorkouts.length; i++) {
-	  			if(this.selectedWorkouts[i].id === this.workouts[q].id) {
-	  				workoutExists = true;
-	  			}
-	  		}
-	  		if (workoutExists === false) {
-  				this.selectedWorkouts.push(this.workouts[q])
-	  		}
+	  		if (this.shownWorkouts.length === workoutAlreadyAddedCount) {
+	  			break;
+	  		} else {
+
+	  			/* this ELSE statement: cycles through selectedWorkouts array, IF the workout exists, it pushes to a new array.
+	  			 	Then cycling through this new array to see how many instances there are. 
+	  			 	If one instance, workoutAlreadyAddedCount +1, otherwise continues cycling through selectedWorkouts array. 
+	  			 	This allows workoutAlreadyCount to be increased if there is ONLY ONE instance of the already added workout
+	  			 */
+		  		for (i = 0; i < this.selectedWorkouts.length; i++) {
+		  			if(this.selectedWorkouts[i].id === this.shownWorkouts[q].id) {
+		  				workoutAlreadyAdded = true;
+  						alreadyAdded.push(this.selectedWorkouts[i])
+		  				addCount = 0;
+		  				for (j = 0; j < alreadyAdded.length; j++) {		  					
+		  					if (this.selectedWorkouts[i].id === alreadyAdded[j].id) {
+		  						addCount = addCount + 1;	
+		  					}
+	  					}
+	  					if (addCount === 1) { 
+	  						workoutAlreadyAddedCount = workoutAlreadyAddedCount + 1;
+	  					}
+		  			}
+		  		}
+		  		if (workoutAlreadyAdded === false) {
+	  				this.selectedWorkouts.push(this.shownWorkouts[q])
+	  				workoutVisibleCount = workoutVisibleCount - 1;
+		  		}
+		  	}
 		}
 
 
-		// highlight selected workouts
+		// highlight selected workouts picked by randomize
 		var j;
 		var k;
 
@@ -172,19 +212,8 @@ export class AppComponent implements OnInit {
 			}
   		}	
 	}
-
-
-	console(): void {
-		var i = 0;
-		var j = 0;
-		var k = 0;
-		for (k; k < 5; k ++) {
-		console.log(k + " k")
-		for (j; j < 10; j ++) {
-			console.log(j + " j")
-		}
-	}
-		// console.log(this.selectedWorkouts);
-		// console.log(this.workouts.length);
-	}
 }
+
+
+
+
